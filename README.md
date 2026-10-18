@@ -1,6 +1,6 @@
 # CAMML@SIMaP website
 
-Source for <https://camml-lab.github.io/>, built with [Hugo](https://gohugo.io/) and the [Blowfish](https://blowfish.page/) theme.
+Source for <https://camml.science/>, built with [Hugo](https://gohugo.io/) and the [Blowfish](https://blowfish.page/) theme.
 Every push to `main` rebuilds and publishes the site automatically (see `.github/workflows/hugo.yml`).
 
 You can make all of the edits below directly in the GitHub web interface.

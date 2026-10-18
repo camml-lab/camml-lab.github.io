@@ -3,7 +3,7 @@
 # https://blowfish.page/docs/getting-started/
 
 theme = "blowfish"
-baseURL = "https://camml-lab.github.io/"
+baseURL = "https://camml.science/"
 defaultContentLanguage = "en"
 title = "CAMML@SIMaP"
 
