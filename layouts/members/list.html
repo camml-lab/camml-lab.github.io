@@ -1,0 +1,37 @@
+{{ define "main" }}
+  <header>
+    <h1 class="mt-5 text-4xl font-extrabold text-neutral-900 dark:text-neutral">{{ .Title }}</h1>
+  </header>
+  <section class="mt-4 prose max-w-prose dark:prose-invert">{{ .Content }}</section>
+
+  {{ $current := where .Pages "Params.status" "!=" "alumni" }}
+  {{ $alumni := where .Pages "Params.status" "alumni" }}
+
+  {{ with $current }}
+    <h2 class="camml-h2">Current members</h2>
+    <div class="camml-grid">
+      {{ range .ByWeight }}
+        <a class="camml-card" href="{{ .RelPermalink }}">
+          {{ partial "camml/member-photo.html" (dict "page" . "size" 320) }}
+          <div class="camml-name">{{ .Title }}</div>
+          <div class="camml-role">{{ .Params.role }}</div>
+        </a>
+      {{ end }}
+    </div>
+  {{ end }}
+
+  {{ with $alumni }}
+    <h2 class="camml-h2">Alumni</h2>
+    <ul class="camml-alumni">
+      {{ range sort . "Params.end" "desc" }}
+        <li>
+          <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+          <span class="camml-muted">
+            · {{ .Params.role }}{{ with .Params.start }} · {{ . }}–{{ end }}{{ with .Params.end }}{{ . }}{{ end }}
+            {{ with .Params.now }} · now {{ . }}{{ end }}
+          </span>
+        </li>
+      {{ end }}
+    </ul>
+  {{ end }}
+{{ end }}

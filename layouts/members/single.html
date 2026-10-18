@@ -1,0 +1,16 @@
+{{ define "main" }}
+  <article class="camml-member">
+    {{ partial "camml/member-photo.html" (dict "page" . "size" 400) }}
+    <div>
+      <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">{{ .Title }}</h1>
+      <div class="camml-role">
+        {{ .Params.role }}{{ if eq .Params.status "alumni" }} (alumni){{ end }}
+        {{ with .Params.start }} · {{ . }}–{{ end }}{{ with $.Params.end }}{{ . }}{{ end }}
+      </div>
+      {{ with .Params.now }}<div class="camml-muted">Now: {{ . }}</div>{{ end }}
+      {{ partial "camml/member-links.html" . }}
+      <div class="mt-6 prose dark:prose-invert">{{ .Content }}</div>
+      <p class="mt-8"><a class="camml-back" href="{{ .Parent.RelPermalink }}">← All people</a></p>
+    </div>
+  </article>
+{{ end }}

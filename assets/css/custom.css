@@ -1,0 +1,127 @@
+:root {
+    /* The "Camel" Primary - A warm, professional ochre */
+    --color-primary-500: 193, 154, 107;
+    /* The "Night Sky" Neutral - Deep charcoal for contrast */
+    --color-neutral-900: 31, 41, 55;
+    /* The "Oasis" Secondary - A muted teal for links/JAX code */
+    --color-secondary-500: 32, 178, 170;
+    /* The "Sand" Background - Off-white parchment */
+    --color-neutral-50: 252, 251, 247;
+}
+
+/* Sand page background (light mode only, so dark mode still works) */
+html:not(.dark) body {
+    background-color: rgb(var(--color-neutral-50)) !important;
+}
+
+/* Fix for the homepage hero card visibility and contrast (light mode) */
+html:not(.dark) .sm\:overflow-hidden.rounded-2xl, html:not(.dark) .bg-secondary-bg {
+    background-color: #ffffff !important;
+    border: 1px solid rgba(193, 154, 107, 0.2) !important;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+}
+
+/* Darken the Motto and Hero Title for legibility (light mode) */
+html:not(.dark) .mx-auto.max-w-7xl h1, html:not(.dark) .mx-auto.max-w-7xl h2, html:not(.dark) .hero-subtitle, html:not(.dark) .profile-headline {
+    color: rgb(var(--color-neutral-900)) !important;
+    opacity: 1 !important;
+}
+
+/* Ensure Logo is correctly sized in the header */
+.logo {
+    max-height: 2.5rem !important;
+    width: auto !important;
+}
+
+/* ---------- People & Publications (layouts/members, layouts/publications) ---------- */
+.camml-h2 {
+    margin: 2.5rem 0 1rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: rgb(var(--color-neutral-800));
+}
+.dark .camml-h2 { color: rgb(var(--color-neutral-100)); }
+.camml-muted { color: rgb(var(--color-neutral-500)); }
+.dark .camml-muted { color: rgb(var(--color-neutral-400)); }
+
+.camml-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+    gap: 1.5rem;
+}
+.camml-card {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 0.75rem;
+    padding: 0.75rem;
+    transition: background-color 0.15s;
+}
+.camml-card:hover { background-color: rgba(var(--color-primary-500), 0.12); }
+.camml-photo {
+    width: 100%;
+    max-width: 12rem;
+    aspect-ratio: 1;
+    margin: 0 auto;
+    border-radius: 9999px;
+    object-fit: cover;
+}
+.camml-initials {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: rgb(var(--color-primary-700));
+    background-color: rgba(var(--color-primary-500), 0.2);
+}
+.dark .camml-initials { color: rgb(var(--color-primary-300)); }
+.camml-name {
+    margin-top: 0.75rem;
+    font-weight: 600;
+    color: rgb(var(--color-neutral-900));
+}
+.dark .camml-name { color: rgb(var(--color-neutral-100)); }
+.camml-role { color: rgb(var(--color-primary-700)); font-size: 0.95rem; }
+.dark .camml-role { color: rgb(var(--color-primary-400)); }
+
+.camml-alumni { list-style: none; padding: 0; }
+.camml-alumni li { padding: 0.35rem 0; }
+.camml-alumni a, .camml-back, .camml-badges a { color: rgb(var(--color-primary-700)); }
+.dark .camml-alumni a, .dark .camml-back, .dark .camml-badges a { color: rgb(var(--color-primary-400)); }
+
+.camml-member {
+    display: grid;
+    grid-template-columns: 14rem 1fr;
+    gap: 2.5rem;
+    align-items: start;
+    margin-top: 2rem;
+}
+.camml-member .camml-photo { max-width: 14rem; }
+@media (max-width: 640px) {
+    .camml-member { grid-template-columns: 1fr; gap: 1.5rem; }
+    .camml-member .camml-photo { max-width: 10rem; }
+}
+.camml-links { display: flex; gap: 0.9rem; margin-top: 0.75rem; font-size: 1.35rem; }
+.camml-links a { color: rgb(var(--color-neutral-600)); }
+.camml-links a:hover { color: rgb(var(--color-primary-600)); }
+.dark .camml-links a { color: rgb(var(--color-neutral-300)); }
+
+.camml-pubs { list-style: none; padding: 0; }
+.camml-pubs li {
+    padding: 0.9rem 0;
+    border-bottom: 1px solid rgba(var(--color-neutral-500), 0.2);
+}
+.camml-pub-title { font-weight: 600; color: rgb(var(--color-neutral-900)); }
+.dark .camml-pub-title { color: rgb(var(--color-neutral-100)); }
+.camml-pubs strong { color: rgb(var(--color-neutral-800)); }
+.dark .camml-pubs strong { color: rgb(var(--color-neutral-200)); }
+.camml-badges { display: flex; gap: 0.5rem; margin-top: 0.35rem; }
+.camml-badges a {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 0.1rem 0.55rem;
+    border-radius: 0.375rem;
+    border: 1px solid rgba(var(--color-primary-500), 0.5);
+}

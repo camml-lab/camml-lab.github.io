@@ -1,0 +1,8 @@
+# Opens pull requests when the GitHub Actions used in .github/workflows have new versions.
+# Hugo and the Blowfish theme are updated by hand (see README), since they need to be upgraded together.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly

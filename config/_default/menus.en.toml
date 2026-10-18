@@ -1,0 +1,14 @@
+[[main]]
+  name = "Research"
+  pageRef = "/research"
+  weight = 10
+
+[[main]]
+  name = "People"
+  pageRef = "/members"
+  weight = 20
+
+[[main]]
+  name = "Publications"
+  pageRef = "/publications"
+  weight = 30

@@ -1,0 +1,36 @@
+# Checks run before each commit (after `pre-commit install`) and on GitHub for every push / pull request.
+# Run them all by hand with: pre-commit run --all-files
+exclude: ^(themes/|design/)
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: trailing-whitespace
+        args: [--markdown-linebreak-ext=md]
+      - id: end-of-file-fixer
+      - id: mixed-line-ending
+        args: [--fix=lf]
+      - id: check-yaml
+      - id: check-toml
+      - id: check-json
+      - id: check-merge-conflict
+      - id: check-case-conflict
+      - id: check-added-large-files
+        args: [--maxkb=1024]
+
+  - repo: local
+    hooks:
+      - id: check-content
+        name: check member pages and publications
+        entry: python scripts/check_content.py
+        language: python
+        additional_dependencies: [pyyaml]
+        pass_filenames: false
+        always_run: true
+
+      - id: hugo-build
+        name: build site with Hugo (warnings are errors)
+        entry: hugo --panicOnWarning --renderToMemory --quiet
+        language: system
+        pass_filenames: false
+        always_run: true

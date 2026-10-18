@@ -1,0 +1,15 @@
+{{/* Icon links for a member: email, website, GitHub, Scholar, ORCID. Empty fields are skipped. */}}
+{{ $links := .Params.links | default dict }}
+{{ $items := slice }}
+{{ with .Params.email }}{{ $items = $items | append (dict "icon" "envelope" "url" (printf "mailto:%s" .) "label" "Email") }}{{ end }}
+{{ with $links.website }}{{ $items = $items | append (dict "icon" "globe" "url" . "label" "Website") }}{{ end }}
+{{ with $links.github }}{{ $items = $items | append (dict "icon" "github" "url" . "label" "GitHub") }}{{ end }}
+{{ with $links.scholar }}{{ $items = $items | append (dict "icon" "google-scholar" "url" . "label" "Google Scholar") }}{{ end }}
+{{ with $links.orcid }}{{ $items = $items | append (dict "icon" "orcid" "url" . "label" "ORCID") }}{{ end }}
+{{ with $items }}
+  <div class="camml-links">
+    {{ range . }}
+      <a href="{{ .url }}" title="{{ .label }}" aria-label="{{ .label }}" {{ if not (hasPrefix .url "mailto:") }}target="_blank" rel="noopener"{{ end }}>{{ partial "icon.html" .icon }}</a>
+    {{ end }}
+  </div>
+{{ end }}

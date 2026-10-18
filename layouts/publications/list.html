@@ -1,0 +1,40 @@
+{{ define "main" }}
+  <header>
+    <h1 class="mt-5 text-4xl font-extrabold text-neutral-900 dark:text-neutral">{{ .Title }}</h1>
+  </header>
+  <section class="mt-4 prose max-w-prose dark:prose-invert">{{ .Content }}</section>
+
+  {{ $members := slice }}
+  {{ with site.GetPage "/members" }}{{ range .Pages }}{{ $members = $members | append .Title }}{{ end }}{{ end }}
+
+  {{ $pubs := hugo.Data.publications | default slice }}
+  {{ $years := slice }}
+  {{ range $pubs }}{{ $years = $years | append (int .year) }}{{ end }}
+
+  {{ range sort (uniq $years) "value" "desc" }}
+    {{ $year := . }}
+    <h2 class="camml-h2">{{ $year }}</h2>
+    <ol class="camml-pubs">
+      {{ range where $pubs "year" $year }}
+        <li>
+          <div class="camml-pub-title">{{ .title }}</div>
+          <div class="camml-muted">
+            {{ $names := slice }}
+            {{ range .authors }}
+              {{ if in $members . }}{{ $names = $names | append (printf "<strong>%s</strong>" (htmlEscape .)) }}{{ else }}{{ $names = $names | append (htmlEscape .) }}{{ end }}
+            {{ end }}
+            {{ delimit $names ", " | safeHTML }}
+          </div>
+          <div class="camml-muted"><em>{{ .journal }}</em>{{ with .note }} · {{ . }}{{ end }}</div>
+          <div class="camml-badges">
+            {{ with .doi }}<a href="https://doi.org/{{ . }}" target="_blank" rel="noopener">DOI</a>{{ end }}
+            {{ with .arxiv }}<a href="https://arxiv.org/abs/{{ . }}" target="_blank" rel="noopener">arXiv</a>{{ end }}
+            {{ with .url }}<a href="{{ . }}" target="_blank" rel="noopener">Link</a>{{ end }}
+          </div>
+        </li>
+      {{ end }}
+    </ol>
+  {{ else }}
+    <p class="camml-muted">No publications listed yet.</p>
+  {{ end }}
+{{ end }}

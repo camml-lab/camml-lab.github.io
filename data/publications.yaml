@@ -1,0 +1,20 @@
+# Group publications. Add new papers anywhere: the page sorts them by year (newest first).
+# Names that match a page in content/members are shown in bold automatically.
+#
+# Fields:
+#   title    (required)
+#   authors  (required) list of names, written as "First Last"
+#   year     (required)
+#   journal  e.g. "Phys. Rev. B 105, 014101" or "arXiv preprint"
+#   doi      just the DOI, e.g. 10.1103/PhysRevB.105.014101
+#   arxiv    just the ID, e.g. 2301.01234
+#   url      any other link (PDF, code, dataset)
+#   note     short extra text, e.g. "Editor's suggestion"
+#
+# Example (replace with real papers):
+- title: "Example paper title: replace me"
+  authors: ["Martin Uhrin", "Giovanni Trezza", "A. Collaborator"]
+  journal: "Journal Name 1, 123"
+  year: 2026
+  doi: ""
+  arxiv: ""
