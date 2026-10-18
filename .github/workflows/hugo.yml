@@ -41,7 +41,10 @@ jobs:
       - name: Build
         env:
           HUGO_ENVIRONMENT: production
-        run: hugo --gc --minify --panicOnWarning --baseURL "${{ steps.pages.outputs.base_url }}/"
+        run: |
+          # Shown as "Last updated" in the footer: the date of the latest commit
+          export HUGO_PARAMS_LASTUPDATED="$(git log -1 --format=%cI)"
+          hugo --gc --minify --panicOnWarning --baseURL "${{ steps.pages.outputs.base_url }}/"
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v5
         with:

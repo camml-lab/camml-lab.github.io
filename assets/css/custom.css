@@ -245,3 +245,11 @@ html:not(.dark) .mx-auto.max-w-7xl h2 {
 /* Hero icon links (e.g. GitHub): the theme's default is too pale on a white card */
 html:not(.dark) .sm\:overflow-hidden.rounded-2xl a.text-primary-300 { color: rgb(var(--color-primary-700)); }
 html:not(.dark) .sm\:overflow-hidden.rounded-2xl a.text-primary-300:hover { color: rgb(var(--color-secondary-600)); }
+
+/* Footer "Last updated" line (layouts/partials/extend-footer.html) */
+.camml-updated {
+    margin-top: 0.4rem;
+    font-size: 0.75rem;
+    color: rgb(var(--color-neutral-500));
+}
+.dark .camml-updated { color: rgb(var(--color-neutral-400)); }

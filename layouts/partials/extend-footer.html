@@ -1,0 +1,7 @@
+{{/* "Last updated" line under the copyright. The deploy workflow sets HUGO_PARAMS_LASTUPDATED to the
+     date of the latest commit; local previews fall back to the build date. */}}
+{{ $updated := now }}
+{{ with site.Params.lastUpdated }}{{ $updated = time.AsTime . }}{{ end }}
+<p class="camml-updated">
+  Last updated <time datetime="{{ $updated.Format "2006-01-02" }}">{{ $updated.Format "2 January 2006" }}</time>
+</p>
