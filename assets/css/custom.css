@@ -96,6 +96,22 @@ html:not(.dark) .mx-auto.max-w-7xl h1, html:not(.dark) .mx-auto.max-w-7xl h2, ht
 .camml-role { color: rgb(var(--color-primary-700)); font-size: 0.95rem; }
 .dark .camml-role { color: rgb(var(--color-primary-400)); }
 
+.camml-collaborators {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr));
+    gap: 1.5rem 2rem;
+}
+.camml-collaborators li { display: flex; flex-direction: column; }
+.camml-collab-name, .camml-collaborators a { font-weight: 600; }
+.camml-collab-desc { margin-top: 0.2rem; font-size: 0.9rem; color: rgb(var(--color-neutral-700)); }
+.dark .camml-collab-desc { color: rgb(var(--color-neutral-300)); }
+.camml-collab-name { color: rgb(var(--color-neutral-900)); }
+.dark .camml-collab-name { color: rgb(var(--color-neutral-100)); }
+.camml-collaborators a { color: rgb(var(--color-primary-700)); }
+.dark .camml-collaborators a { color: rgb(var(--color-primary-400)); }
+
 .camml-alumni { list-style: none; padding: 0; }
 .camml-alumni li { padding: 0.35rem 0; }
 .camml-alumni a, .camml-back, .camml-badges a { color: rgb(var(--color-primary-700)); }

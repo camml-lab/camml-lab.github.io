@@ -20,6 +20,20 @@
     </div>
   {{ end }}
 
+  {{ with hugo.Data.collaborators }}
+    <h2 class="camml-h2">Collaborators</h2>
+    <ul class="camml-collaborators">
+      {{ range . }}
+        {{ $c := . }}
+        <li>
+          {{ with $c.url }}<a href="{{ . }}" target="_blank" rel="noopener">{{ $c.name }}</a>{{ else }}<span class="camml-collab-name">{{ $c.name }}</span>{{ end }}
+          <span class="camml-muted">{{ $c.affiliation }}</span>
+          {{ with $c.description }}<span class="camml-collab-desc">{{ . }}</span>{{ end }}
+        </li>
+      {{ end }}
+    </ul>
+  {{ end }}
+
   {{ with $alumni }}
     <h2 class="camml-h2">Alumni</h2>
     <ul class="camml-alumni">

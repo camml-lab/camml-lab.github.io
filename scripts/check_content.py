@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Check member pages, code pages and data/publications.yaml for common mistakes.
+"""Check member pages, code pages, data/collaborators.yaml and data/publications.yaml for common mistakes.
 
 Run from the repository root: python3 scripts/check_content.py
 Exits non-zero if any errors are found; warnings are printed but don't fail.
@@ -15,11 +15,12 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 MEMBERS = ROOT / "content" / "members"
 CODES = ROOT / "content" / "codes"
 PUBLICATIONS = ROOT / "data" / "publications.yaml"
+COLLABORATORS = ROOT / "data" / "collaborators.yaml"
 
 MAX_PHOTO_KB = 1024
 PHOTO_TYPES = {".jpg", ".jpeg", ".png", ".webp"}
 STATUSES = {"current", "alumni"}
-LINK_KEYS = {"github", "scholar", "orcid", "website"}
+LINK_KEYS = {"github", "scholar", "orcid", "linkedin", "website"}
 CODE_LINK_KEYS = {"docs", "github", "pypi", "website"}
 ANCHORS = {"Center", "Top", "Bottom", "Left", "Right", "TopLeft", "TopRight", "BottomLeft", "BottomRight", "Smart"}
 
@@ -147,6 +148,38 @@ def check_codes() -> None:
                 errors.append(f"{rel(logo)}: logo is larger than {MAX_PHOTO_KB} KB")
 
 
+def check_collaborators() -> None:
+    if not COLLABORATORS.exists():
+        return
+    where = rel(COLLABORATORS)
+    try:
+        people = yaml.safe_load(COLLABORATORS.read_text(encoding="utf-8")) or []
+    except yaml.YAMLError as exc:
+        errors.append(f"{where}: invalid YAML: {exc}")
+        return
+    if not isinstance(people, list):
+        errors.append(f"{where}: must be a list of entries, each starting with '- name:'")
+        return
+    seen: set[str] = set()
+    for i, person in enumerate(people, start=1):
+        label = f"{where}: entry {i}"
+        if not isinstance(person, dict):
+            errors.append(f"{label}: must be key: value pairs")
+            continue
+        name = str(person.get("name") or "").strip()
+        if not name:
+            errors.append(f"{label}: 'name' is required")
+        elif name.lower() in seen:
+            errors.append(f"{label}: {name} is listed twice")
+        seen.add(name.lower())
+        if not str(person.get("affiliation") or "").strip():
+            errors.append(f"{label} ({name}): 'affiliation' is required")
+        if (url := person.get("url")) and not str(url).startswith(("https://", "http://")):
+            errors.append(f"{label} ({name}): 'url' should start with https://")
+        if unknown := set(person) - {"name", "affiliation", "description", "url"}:
+            errors.append(f"{label} ({name}): unknown field(s) {sorted(unknown)}")
+
+
 def check_publications() -> None:
     if not PUBLICATIONS.exists():
         return
@@ -201,6 +234,7 @@ def check_publications() -> None:
 def main() -> int:
     check_members()
     check_codes()
+    check_collaborators()
     check_publications()
     for w in warnings:
         print(f"warning: {w}")

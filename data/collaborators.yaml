@@ -1,0 +1,23 @@
+# Collaborators shown on the People page, in the order listed here.
+# Fields: name (required), affiliation (required), description (optional, one short sentence),
+#         url (optional: personal or institutional page)
+- name: "Noel Jakse"
+  affiliation: "SIMaP, Grenoble"
+  description: "Atomistic simulation of liquid metals and alloys, from ab initio molecular dynamics to interaction models for melts and solidification."
+- name: "Roberta Poloni"
+  affiliation: "SIMaP, Grenoble"
+  description: "First-principles modelling of spin-crossover materials and gas adsorption in metal–organic frameworks."
+- name: "Marie-Bernadette Lepetit"
+  affiliation: "Institut Néel, CNRS, Grenoble"
+  description: "Ab initio electronic structure of strongly correlated, magnetic and multiferroic materials."
+- name: "Marc Verdier"
+  affiliation: "SIMaP, Grenoble"
+- name: "Assil Bouzid"
+  affiliation: "IRCER, CNRS / University of Limoges"
+  description: "Machine-learned interatomic potentials and atomistic modelling of glasses and amorphous materials."
+- name: "Iurii Timrov"
+  affiliation: "Laboratory for Materials Simulations, Paul Scherrer Institut (PSI)"
+  description: "Hubbard-corrected density-functional theory and first-principles calculation of Hubbard parameters."
+- name: "Nicola Marzari"
+  affiliation: "University of Cambridge and EPFL"
+  description: "Cavendish Professor of Physics at Cambridge; previously head of the THEOS laboratory and director of NCCR MARVEL at EPFL."

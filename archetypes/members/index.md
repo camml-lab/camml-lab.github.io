@@ -12,6 +12,7 @@ links:
   github: ""
   scholar: ""
   orcid: ""
+  linkedin: ""
   website: ""
 ---
 A short bio (2–3 sentences). Put a square photo named photo.jpg next to this file.

@@ -6,6 +6,7 @@
 {{ with $links.github }}{{ $items = $items | append (dict "icon" "github" "url" . "label" "GitHub") }}{{ end }}
 {{ with $links.scholar }}{{ $items = $items | append (dict "icon" "google-scholar" "url" . "label" "Google Scholar") }}{{ end }}
 {{ with $links.orcid }}{{ $items = $items | append (dict "icon" "orcid" "url" . "label" "ORCID") }}{{ end }}
+{{ with $links.linkedin }}{{ $items = $items | append (dict "icon" "linkedin" "url" . "label" "LinkedIn") }}{{ end }}
 {{ with $items }}
   <div class="camml-links">
     {{ range . }}

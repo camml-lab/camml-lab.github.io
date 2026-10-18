@@ -9,6 +9,7 @@ links:
   github: "https://github.com/muhrin"
   scholar: ""
   orcid: ""
+  linkedin: ""
   website: ""
 ---
 Martin Uhrin leads the Computational Atomistic Methods and Machine Learning (CAMML) team at SIMaP.

@@ -13,6 +13,10 @@ You can make all of the edits below directly in the GitHub web interface.
 
 When someone leaves, set `status: "alumni"`, fill in `end:` (year) and optionally `now:` (where they went). They move to the Alumni list automatically.
 
+## Add a collaborator
+
+Add an entry to `data/collaborators.yaml` with their `name` and `affiliation`, and optionally a one-sentence `description` and a `url`. They appear in the Collaborators section of the People page, in the order listed.
+
 ## Add a code
 
 1. Copy `content/codes/tensorial/` to a new folder named after the code, e.g. `content/codes/mycode/`.
@@ -20,6 +24,8 @@ When someone leaves, set `status: "alumni"`, fill in `end:` (year) and optionall
 3. Optionally add a square logo named `logo.svg` (or `.png`). Without one, the first letter of the name is shown.
 
 ## Add a publication
+
+The Publications page is currently hidden. To publish it, delete the `draft: true` line in `content/publications/_index.md` and uncomment the Publications entry in `config/_default/menus.en.toml`.
 
 Add an entry to `data/publications.yaml` (the format is described at the top of that file). Papers are grouped by year, and names that match a member page are shown in bold.
 

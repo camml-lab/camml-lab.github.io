@@ -20,6 +20,7 @@ title = "CAMML@SIMaP"
   headline = "Alone we go faster, together we go further"
   bio = "Computational Atomistic Methods and Machine Learning team at SIMaP."
   links = [
+    { github = "https://github.com/camml-lab" },
     # { email = "mailto:you@example.com" },
 #     { link = "https://link-to-some-website.com/" },
 #     { amazon = "https://www.amazon.com/hz/wishlist/ls/wishlist-id" },

@@ -13,12 +13,21 @@
   pageRef = "/members"
   weight = 20
 
-[[main]]
-  name = "Publications"
-  pageRef = "/publications"
-  weight = 30
+# Publications page is hidden for now (draft in content/publications/_index.md). To show it again:
+# [[main]]
+#   name = "Publications"
+#   pageRef = "/publications"
+#   weight = 30
 
 [[main]]
   name = "Codes"
   pageRef = "/codes"
   weight = 40
+
+[[main]]
+  identifier = "github"
+  pre = "github"
+  name = ""
+  title = "CAMML on GitHub"
+  url = "https://github.com/camml-lab"
+  weight = 100
