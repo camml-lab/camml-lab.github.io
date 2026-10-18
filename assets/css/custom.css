@@ -27,10 +27,21 @@ html:not(.dark) .mx-auto.max-w-7xl h1, html:not(.dark) .mx-auto.max-w-7xl h2, ht
     opacity: 1 !important;
 }
 
-/* Ensure Logo is correctly sized in the header */
-.logo {
-    max-height: 2.5rem !important;
-    width: auto !important;
+/* Header logo: the theme inlines the SVG but only sizes its wrapper, so size the SVG itself */
+.logo svg {
+    display: block;
+    height: 3.5rem;
+    width: auto;
+}
+
+/* Home page hero: motto in italics, welcome text justified */
+.sm\:overflow-hidden.rounded-2xl h2 {
+    font-style: italic;
+    font-weight: 400 !important;
+}
+.sm\:overflow-hidden.rounded-2xl section.prose {
+    text-align: justify;
+    hyphens: auto;
 }
 
 /* ---------- People & Publications (layouts/members, layouts/publications) ---------- */
@@ -125,3 +136,62 @@ html:not(.dark) .mx-auto.max-w-7xl h1, html:not(.dark) .mx-auto.max-w-7xl h2, ht
     border-radius: 0.375rem;
     border: 1px solid rgba(var(--color-primary-500), 0.5);
 }
+
+/* ---------- Codes (layouts/codes) ---------- */
+.camml-codes {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+.camml-code-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1.25rem;
+    border-radius: 0.75rem;
+    border: 1px solid rgba(var(--color-primary-500), 0.35);
+}
+.camml-code-head {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    text-decoration: none;
+}
+.camml-code-logo {
+    width: 3.5rem;
+    height: 3.5rem;
+    flex-shrink: 0;
+    border-radius: 0.75rem;
+    object-fit: contain;
+}
+.camml-code-logo.camml-initials { font-size: 1.75rem; }
+.camml-code-name {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: rgb(var(--color-neutral-900));
+}
+.dark .camml-code-name { color: rgb(var(--color-neutral-100)); }
+.camml-code-summary { margin: 0; flex-grow: 1; font-size: 1rem; color: rgb(var(--color-neutral-700)); }
+.dark .camml-code-summary { color: rgb(var(--color-neutral-300)); }
+.camml-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.camml-tags span {
+    font-size: 0.75rem;
+    padding: 0.1rem 0.5rem;
+    border-radius: 9999px;
+    background-color: rgba(var(--color-primary-500), 0.15);
+    color: rgb(var(--color-neutral-700));
+}
+.dark .camml-tags span { color: rgb(var(--color-neutral-200)); }
+.camml-install {
+    margin-top: 1rem;
+    max-width: 40rem;
+    overflow-x: auto;
+    padding: 0.6rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 0.9rem;
+    background-color: rgb(var(--color-neutral-100));
+    color: rgb(var(--color-neutral-800));
+}
+.dark .camml-install { background-color: rgb(var(--color-neutral-800)); color: rgb(var(--color-neutral-100)); }
+.camml-code-license { font-size: 0.9rem; }

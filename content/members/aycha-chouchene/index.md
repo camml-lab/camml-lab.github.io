@@ -6,4 +6,4 @@ weight: 40
 start:
 links: {}
 ---
-Aycha Chouchene is a Master's student in the CAMML group.
+Aycha Chouchene is a Master's student in the CAMML team.

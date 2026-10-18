@@ -6,4 +6,4 @@ weight: 50
 start:
 links: {}
 ---
-Aditi Chauhan is a member of the CAMML group.
+Aditi Chauhan is a member of the CAMML team.

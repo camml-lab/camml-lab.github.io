@@ -1,6 +1,6 @@
 ---
 title: "Publications"
-description: "Publications from the CAMML group"
+description: "Publications from the CAMML team"
 ---
 
-Papers from the group. Names of group members are shown in **bold**.
+Papers from the team. Names of team members are shown in **bold**.

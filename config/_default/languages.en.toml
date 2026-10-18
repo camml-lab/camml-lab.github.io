@@ -2,7 +2,7 @@ disabled = false
 locale = "en"
 label = "English"
 weight = 1
-title = "CAMML Lab"
+title = "CAMML@SIMaP"
 
 [params]
   displayName = "EN"
@@ -11,14 +11,14 @@ title = "CAMML Lab"
   dateFormat = "2 January 2006"
   logo = "img/camml-logo.svg"
   # secondaryLogo = "img/secondary-logo.png"
-  description = "Computational Atomistic Methods and Machine Learning (CAMML) group led by Martin Uhrin."
+  description = "Computational Atomistic Methods and Machine Learning (CAMML) team at SIMaP, Grenoble, led by Martin Uhrin."
   # copyright = "Copy, _right?_ :thinking_face:"
 
 [params.author]
-  name = "CAMML Lab"
-  # email = "" # TODO: add group contact email
+  name = "CAMML@SIMaP"
+  # email = "" # TODO: add team contact email
   headline = "Alone we go faster, together we go further"
-  bio = "Computational Atomistic Methods and Machine Learning group."
+  bio = "Computational Atomistic Methods and Machine Learning team at SIMaP."
   links = [
     # { email = "mailto:you@example.com" },
 #     { link = "https://link-to-some-website.com/" },

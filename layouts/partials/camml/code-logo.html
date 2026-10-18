@@ -1,0 +1,6 @@
+{{/* A code's logo (logo.* in its folder), or its first letter if there isn't one. */}}
+{{ with .Resources.GetMatch "logo.*" }}
+  <img class="camml-code-logo" src="{{ .RelPermalink }}" alt="" width="56" height="56">
+{{ else }}
+  <div class="camml-code-logo camml-initials" aria-hidden="true">{{ substr .Title 0 1 | upper }}</div>
+{{ end }}

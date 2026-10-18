@@ -1,6 +1,6 @@
 ---
 title: "Martin Uhrin"
-role: "Group leader"
+role: "Team leader"
 status: "current"
 weight: 10
 start:
@@ -11,4 +11,4 @@ links:
   orcid: ""
   website: ""
 ---
-Martin Uhrin is the head of the Computational Atomistic Methods and Machine Learning (CAMML) group.
+Martin Uhrin leads the Computational Atomistic Methods and Machine Learning (CAMML) team at SIMaP.

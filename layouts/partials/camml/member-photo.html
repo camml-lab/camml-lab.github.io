@@ -4,7 +4,7 @@
 {{ if $img }}
   {{ $anchor := $p.Params.photo_anchor | default "Center" }}
   {{ $thumb := $img.Fill (printf "%dx%d webp q85 %s" .size .size $anchor) }}
-  <img class="camml-photo" src="{{ $thumb.RelPermalink }}" width="{{ .size }}" height="{{ .size }}" alt="{{ $p.Title }}" loading="lazy">
+  <img class="camml-photo" src="{{ $thumb.RelPermalink }}" width="{{ .size }}" height="{{ .size }}" alt="{{ $p.Title }}">
 {{ else }}
   {{ $initials := "" }}
   {{ range first 2 (split $p.Title " ") }}{{ $initials = printf "%s%s" $initials (substr . 0 1) }}{{ end }}

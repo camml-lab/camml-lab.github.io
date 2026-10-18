@@ -1,0 +1,8 @@
+{{/* Link buttons for a code: docs, GitHub, PyPI, website. Empty fields are skipped. */}}
+{{ $links := .Params.links | default dict }}
+<div class="camml-badges">
+  {{ range slice (slice "docs" "Docs") (slice "github" "GitHub") (slice "pypi" "PyPI") (slice "website" "Website") }}
+    {{ $label := index . 1 }}
+    {{ with index $links (index . 0) }}<a href="{{ . }}" target="_blank" rel="noopener">{{ $label }}</a>{{ end }}
+  {{ end }}
+</div>

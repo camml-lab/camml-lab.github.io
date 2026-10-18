@@ -1,4 +1,4 @@
-# CAMML Lab website
+# CAMML@SIMaP website
 
 Source for <https://camml-lab.github.io/>, built with [Hugo](https://gohugo.io/) and the [Blowfish](https://blowfish.page/) theme.
 Every push to `main` rebuilds and publishes the site automatically (see `.github/workflows/hugo.yml`).
@@ -12,6 +12,12 @@ You can make all of the edits below directly in the GitHub web interface.
 3. Add a photo named `photo.jpg` (or `.png`) to the same folder, ideally square and under 1 MB. It's cropped to a circle; if your head gets cut off, set `photo_anchor: "Top"`. Without a photo, your initials are shown.
 
 When someone leaves, set `status: "alumni"`, fill in `end:` (year) and optionally `now:` (where they went). They move to the Alumni list automatically.
+
+## Add a code
+
+1. Copy `content/codes/tensorial/` to a new folder named after the code, e.g. `content/codes/mycode/`.
+2. Edit `index.md`: name, one-sentence `summary` (shown on the Codes page), `tags`, `install` command, licence and links, then a longer description below the `---`. The fields are explained in `archetypes/codes/index.md`.
+3. Optionally add a square logo named `logo.svg` (or `.png`). Without one, the first letter of the name is shown.
 
 ## Add a publication
 
@@ -41,7 +47,7 @@ With a local Hugo you can also run `hugo new members/jane-doe` to create a new m
 
 ## Checks
 
-Every push and pull request runs `.github/workflows/checks.yml`, which checks member pages and `data/publications.yaml`
+Every push and pull request runs `.github/workflows/checks.yml`, which checks member pages, code pages and `data/publications.yaml`
 for common mistakes (wrong `status`, malformed DOIs, oversized photos...) and builds the site with warnings treated as errors.
 To run the same checks on your machine before each commit:
 

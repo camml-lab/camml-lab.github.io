@@ -4,7 +4,7 @@ description: "Physics-informed machine learning for the discovery and inverse de
 layout: "simple"
 ---
 
-For most of history, new materials have been found the way Edison found his light-bulb filament: by trial and error. Each candidate is made or simulated, tested, and usually discarded, and the space of possible materials is far too vast to explore this way. The CAMML group develops computational methods that change this, combining atomistic simulation with machine learning so that we can predict what atoms will do, and then ask which arrangements of atoms will do what we want.
+For most of history, new materials have been found the way Edison found his light-bulb filament: by trial and error. Each candidate is made or simulated, tested, and usually discarded, and the space of possible materials is far too vast to explore this way. The CAMML team develops computational methods that change this, combining atomistic simulation with machine learning so that we can predict what atoms will do, and then ask which arrangements of atoms will do what we want.
 
 ## Physics-informed, equivariant machine learning
 

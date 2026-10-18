@@ -1,6 +1,6 @@
 ---
 title: "{{ replace .File.ContentBaseName "-" " " | title }}"
-role: "PhD student"       # e.g. Group leader, Postdoctoral researcher, PhD student, Visiting researcher
+role: "PhD student"       # e.g. Team leader, Postdoctoral researcher, PhD student, Visiting researcher
 status: "current"         # current | alumni
 weight: 30                # order on the page: lower comes first
 start: {{ now.Year }}     # year joined

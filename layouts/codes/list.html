@@ -1,0 +1,24 @@
+{{ define "main" }}
+  <header>
+    <h1 class="mt-5 text-4xl font-extrabold text-neutral-900 dark:text-neutral">{{ .Title }}</h1>
+  </header>
+  <section class="mt-4 prose max-w-prose dark:prose-invert">{{ .Content }}</section>
+
+  <div class="camml-codes">
+    {{ range .Pages.ByWeight }}
+      <div class="camml-code-card">
+        <a class="camml-code-head" href="{{ .RelPermalink }}">
+          {{ partial "camml/code-logo.html" . }}
+          <span class="camml-code-name">{{ .Title }}</span>
+        </a>
+        <p class="camml-code-summary">{{ .Summary | plainify }}</p>
+        {{ with .Params.tags }}
+          <div class="camml-tags">{{ range . }}<span>{{ . }}</span>{{ end }}</div>
+        {{ end }}
+        {{ partial "camml/code-links.html" . }}
+      </div>
+    {{ else }}
+      <p class="camml-muted">No codes listed yet.</p>
+    {{ end }}
+  </div>
+{{ end }}

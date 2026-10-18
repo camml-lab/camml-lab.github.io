@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Check member pages and data/publications.yaml for common mistakes.
+"""Check member pages, code pages and data/publications.yaml for common mistakes.
 
 Run from the repository root: python3 scripts/check_content.py
 Exits non-zero if any errors are found; warnings are printed but don't fail.
@@ -13,12 +13,14 @@ import yaml
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 MEMBERS = ROOT / "content" / "members"
+CODES = ROOT / "content" / "codes"
 PUBLICATIONS = ROOT / "data" / "publications.yaml"
 
 MAX_PHOTO_KB = 1024
 PHOTO_TYPES = {".jpg", ".jpeg", ".png", ".webp"}
 STATUSES = {"current", "alumni"}
 LINK_KEYS = {"github", "scholar", "orcid", "website"}
+CODE_LINK_KEYS = {"docs", "github", "pypi", "website"}
 ANCHORS = {"Center", "Top", "Bottom", "Left", "Right", "TopLeft", "TopRight", "BottomLeft", "BottomRight", "Smart"}
 
 errors: list[str] = []
@@ -81,15 +83,7 @@ def check_members() -> None:
         if (anchor := fm.get("photo_anchor")) and anchor not in ANCHORS:
             errors.append(f"{where}: 'photo_anchor' must be one of {sorted(ANCHORS)}")
 
-        links = fm.get("links") or {}
-        if not isinstance(links, dict):
-            errors.append(f"{where}: 'links' must be key: value pairs")
-            links = {}
-        for key, url in links.items():
-            if key not in LINK_KEYS:
-                errors.append(f"{where}: unknown link '{key}' (allowed: {sorted(LINK_KEYS)})")
-            elif url and not str(url).startswith(("https://", "http://")):
-                errors.append(f"{where}: link '{key}' should be a full URL starting with https://")
+        check_links(where, fm.get("links") or {}, LINK_KEYS)
 
         if (email := fm.get("email")) and "@" not in str(email):
             errors.append(f"{where}: 'email' doesn't look like an email address")
@@ -108,6 +102,49 @@ def check_members() -> None:
                         if p.suffix.lower() in PHOTO_TYPES and p.stem != "photo"]
         for img in other_images:
             warnings.append(f"{rel(img)}: not used; the profile photo must be named photo{img.suffix}")
+
+
+def check_links(where: str, links, allowed: set[str]) -> None:
+    if not isinstance(links, dict):
+        errors.append(f"{where}: 'links' must be key: value pairs")
+        return
+    for key, url in links.items():
+        if key not in allowed:
+            errors.append(f"{where}: unknown link '{key}' (allowed: {sorted(allowed)})")
+        elif url and not str(url).startswith(("https://", "http://")):
+            errors.append(f"{where}: link '{key}' should be a full URL starting with https://")
+
+
+def check_codes() -> None:
+    if not CODES.exists():
+        return
+    for stray in CODES.glob("*.md"):
+        if stray.name != "_index.md":
+            errors.append(f"{rel(stray)}: codes need their own folder, e.g. content/codes/{stray.stem}/index.md")
+    for folder in sorted(p for p in CODES.iterdir() if p.is_dir()):
+        page = folder / "index.md"
+        if not page.exists():
+            errors.append(f"{rel(folder)}: missing index.md")
+            continue
+        fm = front_matter(page)
+        if fm is None:
+            continue
+        where = rel(page)
+        if not str(fm.get("title") or "").strip():
+            errors.append(f"{where}: 'title' (the code's name) is required")
+        if not str(fm.get("summary") or "").strip():
+            errors.append(f"{where}: 'summary' (one sentence for the Codes page) is required")
+        tags = fm.get("tags") or []
+        if not isinstance(tags, list) or not all(isinstance(t, str) for t in tags):
+            errors.append(f'{where}: \'tags\' must be a list, e.g. ["JAX", "MLIPs"]')
+        check_links(where, fm.get("links") or {}, CODE_LINK_KEYS)
+        if not any((fm.get("links") or {}).values()):
+            warnings.append(f"{where}: no links given (docs, github, pypi or website)")
+        for logo in folder.glob("logo.*"):
+            if logo.suffix.lower() not in PHOTO_TYPES | {".svg"}:
+                errors.append(f"{rel(logo)}: logo must be .svg, .png, .jpg or .webp")
+            if logo.stat().st_size / 1024 > MAX_PHOTO_KB:
+                errors.append(f"{rel(logo)}: logo is larger than {MAX_PHOTO_KB} KB")
 
 
 def check_publications() -> None:
@@ -163,6 +200,7 @@ def check_publications() -> None:
 
 def main() -> int:
     check_members()
+    check_codes()
     check_publications()
     for w in warnings:
         print(f"warning: {w}")
