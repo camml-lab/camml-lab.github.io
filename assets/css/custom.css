@@ -1,30 +1,38 @@
+/* Colours come from the CAMML scheme (assets/css/schemes/camml.css). The logo gradient is reused below. */
 :root {
-    /* The "Camel" Primary - A warm, professional ochre */
-    --color-primary-500: 193, 154, 107;
-    /* The "Night Sky" Neutral - Deep charcoal for contrast */
-    --color-neutral-900: 31, 41, 55;
-    /* The "Oasis" Secondary - A muted teal for links/JAX code */
-    --color-secondary-500: 32, 178, 170;
-    /* The "Sand" Background - Off-white parchment */
-    --color-neutral-50: 252, 251, 247;
+    --camml-gradient: linear-gradient(90deg, #149bc8, #920572);
 }
 
-/* Sand page background (light mode only, so dark mode still works) */
-html:not(.dark) body {
-    background-color: rgb(var(--color-neutral-50)) !important;
+/* Thin logo-gradient bar along the top of every page */
+body {
+    border-top: 4px solid transparent;
+    border-image: var(--camml-gradient) 1;
 }
 
-/* Fix for the homepage hero card visibility and contrast (light mode) */
-html:not(.dark) .sm\:overflow-hidden.rounded-2xl, html:not(.dark) .bg-secondary-bg {
+/* Home page hero card */
+html:not(.dark) .sm\:overflow-hidden.rounded-2xl {
     background-color: #ffffff !important;
-    border: 1px solid rgba(193, 154, 107, 0.2) !important;
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+    border: 1px solid rgba(var(--color-primary-700), 0.15) !important;
+    box-shadow: 0 20px 25px -5px rgba(var(--color-primary-900), 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+}
+.sm\:overflow-hidden.rounded-2xl::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 6px;
+    background: var(--camml-gradient);
+    z-index: 1;
 }
 
-/* Darken the Motto and Hero Title for legibility (light mode) */
-html:not(.dark) .mx-auto.max-w-7xl h1, html:not(.dark) .mx-auto.max-w-7xl h2, html:not(.dark) .hero-subtitle, html:not(.dark) .profile-headline {
-    color: rgb(var(--color-neutral-900)) !important;
-    opacity: 1 !important;
+/* Hero title in the logo gradient; motto in readable dark text */
+.mx-auto.max-w-7xl h1 {
+    background: var(--camml-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent !important;
+}
+html:not(.dark) .mx-auto.max-w-7xl h2 {
+    color: rgb(var(--color-neutral-800)) !important;
 }
 
 /* Header logo: the theme inlines the SVG but only sizes its wrapper, so size the SVG itself */
@@ -33,6 +41,8 @@ html:not(.dark) .mx-auto.max-w-7xl h1, html:not(.dark) .mx-auto.max-w-7xl h2, ht
     height: 3.5rem;
     width: auto;
 }
+/* Brighten the logo on dark backgrounds so the purple stays legible */
+.dark .logo svg { filter: brightness(1.7) saturate(1.1); }
 
 /* Home page hero: motto in italics, welcome text justified */
 .sm\:overflow-hidden.rounded-2xl h2 {
@@ -45,6 +55,15 @@ html:not(.dark) .mx-auto.max-w-7xl h1, html:not(.dark) .mx-auto.max-w-7xl h2, ht
 }
 
 /* ---------- People & Publications (layouts/members, layouts/publications) ---------- */
+.camml-h2::after {
+    content: "";
+    display: block;
+    width: 3rem;
+    height: 3px;
+    margin-top: 0.4rem;
+    border-radius: 3px;
+    background: var(--camml-gradient);
+}
 .camml-h2 {
     margin: 2.5rem 0 1rem;
     font-size: 1.5rem;
@@ -83,10 +102,9 @@ html:not(.dark) .mx-auto.max-w-7xl h1, html:not(.dark) .mx-auto.max-w-7xl h2, ht
     justify-content: center;
     font-size: 2.5rem;
     font-weight: 700;
-    color: rgb(var(--color-primary-700));
-    background-color: rgba(var(--color-primary-500), 0.2);
+    color: #ffffff;
+    background: linear-gradient(135deg, #149bc8, #920572);
 }
-.dark .camml-initials { color: rgb(var(--color-primary-300)); }
 .camml-name {
     margin-top: 0.75rem;
     font-weight: 600;
@@ -166,8 +184,20 @@ html:not(.dark) .mx-auto.max-w-7xl h1, html:not(.dark) .mx-auto.max-w-7xl h2, ht
     gap: 0.75rem;
     padding: 1.25rem;
     border-radius: 0.75rem;
-    border: 1px solid rgba(var(--color-primary-500), 0.35);
+    position: relative;
+    overflow: hidden;
+    padding-top: 1.5rem;
+    border: 1px solid rgba(var(--color-primary-700), 0.2);
+    transition: box-shadow 0.15s;
 }
+.camml-code-card::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 4px;
+    background: var(--camml-gradient);
+}
+.camml-code-card:hover { box-shadow: 0 8px 20px -6px rgba(var(--color-primary-900), 0.25); }
 .camml-code-head {
     display: flex;
     align-items: center;
@@ -195,10 +225,10 @@ html:not(.dark) .mx-auto.max-w-7xl h1, html:not(.dark) .mx-auto.max-w-7xl h2, ht
     font-size: 0.75rem;
     padding: 0.1rem 0.5rem;
     border-radius: 9999px;
-    background-color: rgba(var(--color-primary-500), 0.15);
-    color: rgb(var(--color-neutral-700));
+    background-color: rgba(var(--color-secondary-500), 0.15);
+    color: rgb(var(--color-secondary-800));
 }
-.dark .camml-tags span { color: rgb(var(--color-neutral-200)); }
+.dark .camml-tags span { color: rgb(var(--color-secondary-200)); }
 .camml-install {
     margin-top: 1rem;
     max-width: 40rem;
@@ -211,3 +241,7 @@ html:not(.dark) .mx-auto.max-w-7xl h1, html:not(.dark) .mx-auto.max-w-7xl h2, ht
 }
 .dark .camml-install { background-color: rgb(var(--color-neutral-800)); color: rgb(var(--color-neutral-100)); }
 .camml-code-license { font-size: 0.9rem; }
+
+/* Hero icon links (e.g. GitHub): the theme's default is too pale on a white card */
+html:not(.dark) .sm\:overflow-hidden.rounded-2xl a.text-primary-300 { color: rgb(var(--color-primary-700)); }
+html:not(.dark) .sm\:overflow-hidden.rounded-2xl a.text-primary-300:hover { color: rgb(var(--color-secondary-600)); }
