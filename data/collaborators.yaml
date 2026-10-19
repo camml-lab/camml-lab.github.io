@@ -21,3 +21,6 @@
 - name: "Nicola Marzari"
   affiliation: "University of Cambridge and EPFL"
   description: "Cavendish Professor of Physics at Cambridge; previously head of the THEOS laboratory and director of NCCR MARVEL at EPFL."
+- name: "Marco Saitta"
+  affiliation: "École normale supérieure (ENS), Paris"
+  description: "Adding electronic degrees of freedom (spin and charge) to machine-learning models, particularly machine-learned interatomic potentials."
