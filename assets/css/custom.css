@@ -253,3 +253,13 @@ html:not(.dark) .sm\:overflow-hidden.rounded-2xl a.text-primary-300:hover { colo
     color: rgb(var(--color-neutral-500));
 }
 .dark .camml-updated { color: rgb(var(--color-neutral-400)); }
+
+/* Group photo at the top of the People page */
+.camml-group { margin: 2rem 0 0; }
+.camml-group img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 0.75rem;
+}
+.camml-group figcaption { margin-top: 0.5rem; font-size: 0.9rem; text-align: center; }
